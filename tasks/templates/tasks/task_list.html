@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+</head>
+<body
+    <h1> TASKS </h1>
+    <P>Tasks for today : {{count}} </P>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" > add task </button>
+
+    </form>
+
+    {% for task in tasks  %}
+
+        <p>{{task.title}}</p>
+        <a href="{% url 'edit_task' task.id %}"> edit task </a>
+        <a href="{% url 'delete_task' task.id %}"> delete task</a>
+    {% endfor %}
+
+
+</body>
+</html>
+
+
